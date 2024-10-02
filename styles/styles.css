@@ -2,6 +2,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+:root{
+    --main-color: rgb(245, 106, 106);
+}
+
 body{
     border: 1px solid red;
     font-size: 18px;
@@ -39,7 +43,9 @@ img{
 aside{
     border: 1px solid black;
 }
-
+h3{
+    margin: 2rem 0;
+}
 /* Header */
 header{
     border: 1px solid grey;
@@ -70,11 +76,45 @@ main div.main-content{
     gap: 1.75rem;
 }
 
+/* Seccion Iconos */
 .main-content-iconos > div{
-    display: flex;
-    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    /* border: 1px solid red; */
+    padding: 2rem;
 }
+
+.icon-container{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.main-content-iconos .icon-image{
+
+    border: 1px solid lightgrey;
+    width: fit-content;
+    padding: 1rem;
+    transform: rotate(45deg);
+}
+
+.main-content-iconos .icon-image i{
+    transform: rotate(-45deg);
+    color: var(--main-color);
+}
+/* Articulos */
 .main-content-articles > div{
-    display: flex;
-    /* background-color: red; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
+article{
+    /* border: 1px solid red; */
+    padding: 1rem;
+    width: min-content;
+}
+article > *{
+    margin: 1.5rem 0;
+}
+
+
