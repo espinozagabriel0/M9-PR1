@@ -1,9 +1,11 @@
 /* General */
 *{
+    /*selector universal para quitar los margenes por defecto y cambiar el modelo de la caja en css , de forma que el ancho, alto, contenido, padding y borde esté incluido*/
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 :root{
+    /* Nos permitirá crear variables en el documento para ir reutilizandolas*/
     --main-color: rgb(245, 106, 106);
     --grey: #7f888f;
     --black: rgb(61, 68, 73);
@@ -13,22 +15,21 @@
 }
 
 body{
+    /* estilos generales de fuente a todo el body */
     font-size: 16px;
     font-family: "Roboto Slab", serif;   
 }
 
 #container{
-    /* display: flex;
-    max-width: 100%;
-    margin: 0 auto; */
+    /* se crea el layout de la pagina usando columnas, concretamente 2, y en la segunda linea le indicamos que queremos que la segunda sea 4 veces mayor a la primera, y añadimos una separación*/
     display: grid;
     grid-template-columns: 1fr 4fr;
     gap: 1.5rem;
-    border: 1px solid green;
 }
 
 /* iconos, titulos, texto... */
 
+/*en algunos iconos y otros elementos se aplica transiciones para usar el efecto hover*/
 i{
     font-size: 2rem;
 }
@@ -38,6 +39,14 @@ i.fa-bars, i.fa-solid{
 i.fa-brands{
     color: var(--grey);
     font-size: 1.5rem;
+    transition: color .15s ease-in-out;
+}
+i.fa-brands:hover{
+    color: var(--main-color);
+}
+i.fa-angle-down{
+    color: var(--grey);
+    font-size: 1rem;
 }
 h1{
     font-size: 4rem;
@@ -50,43 +59,59 @@ h4.title{
     color: var(--black);
 }
 ul.side-menu-submenu{
+    /* el submenu del aside, por el momento, no lo mostramos. */
     display: none;
 }
+
 ul{
+    /* para quitar el estilo por defecto de los elementos de una lista */
     list-style: none;
 }
 p{
+    /* aumentamos la separacion entre líneas de un párrafo */
     line-height: 1.9rem;
 }
 img{
+    /* un borde redondeado */
     border-radius: .35rem;
 }
 hr{
+    /* estilos de la línea horizontal que sirve de separador en la página */
     border: .1px solid var(--hr);
 }
 h3{
+    /* estilos para los titulos de cada seccion */
     margin: 2rem 0;
     width: max-content;
     padding: 0 2rem 1rem 0;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     color: var(--black);
 }
 h3:not(.header-title){
+    /* usamos la pseudo clase :not para evitar que se apliquen los estilos, en este caso, de añadir un borde abajo del h3 del header (menu superior) */
     border-bottom: 3px solid var(--main-color);
 }
 .btn{
+    /* estilos de los botones */
     color: var(--main-color);
     padding: .75rem 2rem;
     border-radius: .25rem;
+    /* fit content para que el boton ocupe el espacio del contenido de este */
     width: fit-content;
     background-color: transparent;
     border: 2px solid var(--main-color);
+    transition: all .2s;
+}
+
+button.btn:hover{
+    background-color: rgba(245, 106, 106, 0.11);
 }
 
 /*  Main Section*/
 
 /* Header */
 header nav{
+    /* se usa flex para crear el menu superior */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,6 +119,7 @@ header nav{
     line-height: 0;
 }
 header nav ul{
+    /* flex para poner cada icono del menu superior al lado de otro y añadir una separación */
     display: flex;
     gap: 1rem;
 }
@@ -101,10 +127,11 @@ header nav ul{
 /* Main */
 
 .main-content-container{
+    /* se añade un relleno en la sección main de la página */
     padding: 4rem;
-    /* border: 1px solid cyan; */
 }
 main div.main-content{
+    /* se usa grid para ver el contenido principal, header, en 2 columnas del mismo tamaño*/
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
@@ -112,6 +139,7 @@ main div.main-content{
     margin: 6rem 0;
 }
 .main-content .text{
+    /* se usa flex para añadir un gap vertical en los elementos del div que contiene el titulo princpal... */
     display: flex;
     flex-direction: column;
     gap: 1.75rem;
@@ -120,6 +148,7 @@ main div.main-content{
 /* 1a Seccion Iconos */
 
 .main-content-iconos > div{
+    /* estilos para tener 2 columnas y 2 filas en la 1a seccion de iconos */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -127,18 +156,21 @@ main div.main-content{
 }
 
 .icon-container{
+    /* estilos para el texto de cada icono de la 1a seccion, se usa flex para situar este texto al lado del icono */
     display: flex;
     align-items: center;
     gap: 3.5rem;
     padding: 2rem;
 }
 .icon-container h4{
+    /* se incrementa el tamaño de fuente */
     font-size: 1.2rem;
 }
 .icon-container p{
     margin-top: 1rem;
 }
 .main-content-iconos .icon-image{
+    /* estilos del div en forma de diamante  */
     border: 1px solid lightgrey;
     width: fit-content;
     padding: 2rem;
@@ -146,6 +178,7 @@ main div.main-content{
 }
 
 .main-content-iconos .icon-image i{
+    /* se rota los iconos de dentro del diamante */
     transform: rotate(-45deg);
     font-size: 3rem;
     color: var(--main-color);
@@ -154,45 +187,49 @@ main div.main-content{
 /* 2a sección Articulos */
 
 .main-content-articles > div{
+    /* se crea el layout de la 2a seccion, articulos, usando grid 
+        usando repeat para crear tres columnas del mismo tamaño
+    */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* gap: 3rem; */
-    /* border: 1px solid red; */
 }
 .main-content-articles > div article:nth-child(-n+3){
+    /* selecciona los tres primeros articulos para añadirles un border inferior */
     border-bottom: 1px solid rgba(185, 184, 184, 0.37);
 }
 .main-content-articles > div article:nth-child(3n+2){
+    /* selecciona el 2o y el 5o articulo para añadirles el border derecho e izquiero para lograr el efecto deseado */
     border-right: 1px solid rgba(185, 184, 184, 0.37);
     border-left: 1px solid rgba(185, 184, 184, 0.37);
 }
 article{
+    /* estilos para cada article, donde se añade un flex en columna y un gap, además de un padding */
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 3rem;
 }
 article img{
+    /* hacemos que la imagen ocupe el 100% de su div padre */
     width: 100%;
 }
 article h4.title{
+    /* se modifica el tamaño de fuente */
     font-size: 1.2rem;
 }
 
 /* Aside menu */
 
 aside{
+    /* se usa flex en columna para estilar el aside*/
     display: flex;
     flex-direction: column;
     padding: 2.5rem;
-    /* border: 1px solid red; */
     position: relative;
     background-color: var(--side-bar-bg);
 }
-
-
-
 aside input[placeholder="Search"]{
+    /* estilos del input para buscar*/
     padding: .75rem 1rem;
     border: none;
     outline: 1px solid lightgrey;
@@ -201,7 +238,11 @@ aside input[placeholder="Search"]{
     background: url("../images/search.png") no-repeat right;
     background-color: white;
 }
+input[placeholder="Search"]:focus{
+    outline: 2px solid var(--main-color);
+}
 .aside-search{
+    /* estilos para el div padre del input search */
     width: 100%;
     position: absolute;
     top: 0;
@@ -214,30 +255,56 @@ aside input[placeholder="Search"]{
     padding: 2.2rem;
 }
 .aside-menu{
+    /* se añade un margin top para agregar una separación entre el input y el titulo "menu" */
     margin-top: 6rem;
     width: 100%;
 }
 .aside-menu nav div{
+    /* estilos para los elementos del menu del aside */
     font-size: .85rem;
+    cursor: pointer;
+    transition: color .3s;
 }
+.aside-menu nav div.submenu{
+    /* se usa flex para situar el icono del desplegable al lado en los submenu*/
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aside-menu nav div:hover{
+    /* hover para los elementos del menu del aside*/
+    color: var(--main-color);
+}
+
 aside div.aside-menu nav, div.aside-images{
+    /* se usa flex para separar las imagenes del aside */
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding-bottom: 3.5rem;
 }
 .aside-contact .text{
+    /* se usa flex en columna para añadir un gap entre los elementos del aside-contact */
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 .aside-contact .text i{
+    /* se modifica el tamaño de fuente del icono de la sección aside-contact */
     font-size: 1.55rem;
 }
+.aside-contact span.link{
+    /* estos estilos permiten obtener un border inferior en forma de puntitos */
+    border-bottom: dotted 1px;
+    cursor: pointer;
+}
 .aside-contact-info span{
+    /* se cambia el color del texto  */
     color: var(--grey);
 }
 .aside-contact-info, .aside-contact-info div{
+    /* se añade un espaciado */
     display: flex;
     gap: 1rem;
 }
